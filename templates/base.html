@@ -1,0 +1,109 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    	<meta name="description" content="">
+    	<meta name="author" content="">
+
+		<title>{% block title %}{% endblock %}</title>
+
+		<meta property="og:title" content=""/>
+		<meta property="og:type" content="" />
+		<meta property="og:image" content="{% static 'ico/apple-touch-icon-512-precomposed.png' %}"/>
+		<meta property="og:url" content="http://optional.is"/>
+		<meta property="og:site_name" content=""/>
+		<meta property="og:description" content="" />
+
+    	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    	<!--[if lt IE 9]>
+    	  <script src="{% static 'js/lib/html5shiv.js' %}"></script>
+    	<![endif]-->
+    	
+    	<!-- Fav and touch icons -->
+    	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% get_static_prefix %}ico/apple-touch-icon-144-precomposed.png">
+    	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% get_static_prefix %}ico/apple-touch-icon-114-precomposed.png">
+    	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% get_static_prefix %}ico/apple-touch-icon-72-precomposed.png">
+    	<link rel="apple-touch-icon-precomposed" href="{% get_static_prefix %}ico/apple-touch-icon-57-precomposed.png">
+    	<link rel="shortcut icon" href="{% get_static_prefix %}ico/favicon.png">
+		<style>
+			html,body { margin: 0; padding: 0; font-family: Helvetica, Arial; color: #333; line-height: 150%;  }
+			ul { list-style: none; padding: 0; margin: 0 }
+			li { padding: 0; margin: 0 }
+			
+			section { padding: 0; }
+
+			header { padding: 10px; }
+
+
+			nav ul li { display: inline; padding: 0 5px; }
+			nav ul { text-align: right; }
+
+			footer {
+				background-color: #333;
+				color: #fff;
+			}
+			footer #past-conferences { width: 25%; float: left; }
+			footer ul li a { display: block; }
+			footer a, footer a:active, footer a:focus, footer a:visited { color: #dedede; text-decoration: none; width: auto; }
+			footer a:hover { background-color: #ccc; color: #333; }
+			footer #tags { width: 75%; float: right; }
+
+			footer #tags {
+			    column-count: 5;
+			    column-gap: 0px;
+			}
+			footer ul li a, footer p, footer h2 { padding: 5px 20px; }
+			footer p { padding: 1em 20px; }
+			.tags li { display: inline }
+			.breadcrumbs { font-size: 80%; font-weight: bold; color: #666; }
+			.conference { padding: 0 20px; }
+			.slot { padding: 20px; }
+			.slot h2 { font-size: 18px; margin: 0; padding: 0; }
+			.slot p { margin: 0; padding: 0; }
+			.slot .presenters { font-weight: bold; color: #333; font-size
+			: 16px; }
+			.slot .abstract { padding: 10px 0; font-size: 14px; }
+			.slot { padding-bottom: 25px; }
+			.slot h2 a, .slot h2 a:visited { color: #333; }
+			.tags li a, .tags li a:visited, .tags li a:active, .tags li a:focus { color: #fff; text-decoration: none; background-color: #333; padding: 3px 7px; border-radius: 5px;} 
+
+			.tags li a:hover { background-color: #666; }
+		</style>
+  </head>
+   <body class="">
+		<header>
+			<h1><a href="{% url 'index' %}">Material Conference Archives</a></h1>
+		<nav id="nav">
+			<ul>
+			{% for conf in conferences %}
+			<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
+			{% endfor %}
+		</ul>
+		</nav>
+		</header>
+		<main id="content">
+		{% block content %}{% endblock %}
+		</main>
+		<footer>
+			<p>With {{conferences.count}} conferences, we've brought you over {{total_time}} minutes of amazing, insightful speakers.</p>
+			<h2>Browse Sessions by...</h2>
+			<ul id="past-conferences">
+			{% for conf in conferences %}
+			<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
+			{% endfor %}
+			</ul>
+			<ul id="tags">
+			{% for tag in tags %}
+			<li><a href="{% url 'tag' tag.name %}">{{tag}}</a></li>
+			{% endfor %}
+			</ul>
+			<p style="clear: both">copyright 2018</p>
+		</footer>
+  </body>
+	
+	{% block scripts %}
+	{% endblock %}
+</html>

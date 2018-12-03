@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section style="width: 50%; float: left">
+<section class="conference">
+<h1>{{conference}}</h1>
+<div><a href="{{conference.link_url}}">Homepage</a></div>
+{{conference.description|safe|escape}}
+</section>
+</section>
+
+<section style="width: 50%; float: right">
+{% for slot in slots %}
+<section class="slot">
+<h2><a href="{% url 'slot' conference.year slot.slug%}">{{slot.title}}</a></h2>
+<p class="presenters">{{slot.get_presenters}}</p>
+<p class="abstract">{{slot.abstract}}</p>
+<ul class="tags">
+	{% for tag in slot.tags.all %}
+	<li><a href="{% url 'tag' tag.name %}">{{tag.name}}</a></li>
+	{% endfor %}
+</ul>
+</section>
+{% endfor %}
+</section>
+<section style="clear: both">
+	&nbsp;
+</section>
+
+
+{% endblock %}

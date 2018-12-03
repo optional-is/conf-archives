@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section>
+<h2>Most Recent Conference</h2>
+<h3>{{latest_conf}}</h3>
+<p>{{latest_conf.description}}</p>
+<div><a href="{% url 'year' latest_conf.year %}">View sessions</a></div>
+</section>
+
+<section>
+<h2>Featured Talks</h2>
+</section>
+
+
+{% endblock %}

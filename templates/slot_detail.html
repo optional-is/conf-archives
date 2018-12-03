@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section class="breadcrumbs">
+	<a href="{% url 'index' %}">Home</a> ➜ <a href="{% url 'year' slot.conference.year %}">{{slot.conference.year}}</a> ➜ <span>{{slot.title}}</span>
+</section>
+<section>
+<h1>{{slot.title}}</h1>
+<h2>{{slot.get_presenters}}</h2>
+<p class="conference-year"><a href="{% url 'year' slot.conference.year %}">{{slot.conference}}</a></p>
+<p>{{slot.description}}</p>
+</section>
+{% for person in slot.presenter.all %}
+{% if person.bio %}
+<section>
+<h2>About {{person}}</h2>
+{{person.bio}}
+</section>
+{% endif %}
+{% endfor %}
+<section>
+	{% if slot.youtube_link %}
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/{{slot.youtube_link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{% endif %}
+	{% if slot.mp3_link %}
+	<p><a href="{{slot.mp3_link}}">mp3 download</a></p>
+	{% endif %}
+	<p>Length: {{slot.length}} minutes</p>
+	<h3>Tagged with: </h3>
+	<ul>
+			{% for tag in slot.tags.all %}
+	<li><a href="{% url 'tag' tag.name %}">{{tag.name}}</a></li>
+	{% endfor %}
+	</ul>
+</section>
+
+
+
+{% endblock %}
