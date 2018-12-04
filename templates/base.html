@@ -41,22 +41,23 @@
 			nav ul li { display: inline; padding: 0 5px; }
 			nav ul { text-align: right; }
 
-			footer {
+			footer section {
 				background-color: #333;
-				color: #fff;
+				color: #dedede;
 			}
-			footer #past-conferences { width: 25%; float: left; }
-			footer ul li a { display: block; }
-			footer a, footer a:active, footer a:focus, footer a:visited { color: #dedede; text-decoration: none; width: auto; }
-			footer a:hover { background-color: #ccc; color: #333; }
-			footer #tags { width: 75%; float: right; }
+			footer .counts { font-size: 22px; margin: 0; line-height: 28px }
+			footer section #past-conferences { width: 25%; float: left; }
+			footer section ul li a { display: block; }
+			footer section a, footer section a:active, footer section a:focus, footer section a:visited { color: #dedede; text-decoration: none; width: auto; }
+			footer section a:hover { background-color: #ccc; color: #333; }
+			footer section #tags { width: 75%; float: right; }
 
-			footer #tags {
+			footer section  #tags {
 			    column-count: 5;
 			    column-gap: 0px;
 			}
-			footer ul li a, footer p, footer h2 { padding: 5px 20px; }
-			footer p { padding: 1em 20px; }
+			footer section ul li a, footer  p, section footer h2 { padding: 5px 20px; }
+			footer section p { padding: 1em 20px; }
 			.tags li { display: inline }
 			.breadcrumbs { font-size: 80%; font-weight: bold; color: #666; }
 			.conference { padding: 0 20px; }
@@ -88,19 +89,21 @@
 		{% block content %}{% endblock %}
 		</main>
 		<footer>
-			<p>With {{conferences.count}} conferences, we've brought you over {{total_time}} minutes of amazing, insightful speakers.</p>
-			<h2>Browse Sessions by...</h2>
-			<ul id="past-conferences">
-			{% for conf in conferences %}
-			<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
-			{% endfor %}
-			</ul>
-			<ul id="tags">
-			{% for tag in tags %}
-			<li><a href="{% url 'tag' tag.name %}">{{tag}}</a></li>
-			{% endfor %}
-			</ul>
-			<p style="clear: both">copyright 2018</p>
+			<section>
+				<p class="counts">Material is: {{conferences.count}} conferences, {{total_attendees}} attendees, {{total_slots}} sessions, and {{total_time}} minutes of amazing, insightful, thought provoking videos.</p>
+				<ul id="past-conferences">
+				{% for conf in conferences %}
+				<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
+				{% endfor %}
+				</ul>
+				<ul id="tags">
+				{% for tag in tags %}
+				<li><a href="{% url 'tag' tag.name %}">{{tag}}</a></li>
+				{% endfor %}
+				</ul>
+				<p style="clear: both">Learn something new today.</p>
+			</section>
+			<p><a href="https://jkphl.is/">Joschi Kuphal</a> and <a href="https://suda.co.uk">Brian Suda</a> are the two people behind the Material Conference.</p>
 		</footer>
   </body>
 	

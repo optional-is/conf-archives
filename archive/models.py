@@ -20,6 +20,8 @@ class Conference(models.Model):
 	location = models.TextField(blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
 	metadata = models.TextField(blank=True, null=True)
+	attendees = models.IntegerField(blank=False,null=False)
+
 
 	link_url = models.CharField(max_length=200, blank=False)
 	logo_url = models.CharField(max_length=200, blank=False)

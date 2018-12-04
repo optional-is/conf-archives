@@ -46,6 +46,9 @@ def tags(request, tag_name):
 
 def add_footer_context():
 	c = {}
+
+	c.update({'total_attendees':Conference.objects.all().values('attendees').aggregate(total_attendees=Sum('attendees'))['total_attendees'] })
+	c.update({'total_slots':Slot.objects.count() })
 	c.update({'conferences':Conference.objects.all().order_by('-year') })
 	c.update({'total_time': Slot.objects.all().values('length').aggregate(total_time=Sum('length'))['total_time']})
 	c.update({'tags':Tag.objects.all().order_by('name')})

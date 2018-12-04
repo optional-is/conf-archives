@@ -6,7 +6,7 @@
 <section>
 <h2>Most Recent Conference</h2>
 <h3>{{latest_conf}}</h3>
-<p>{{latest_conf.description}}</p>
+<p>{{latest_conf.description|safe}}</p>
 <div><a href="{% url 'year' latest_conf.year %}">View sessions</a></div>
 </section>
 

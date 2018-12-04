@@ -3,14 +3,10 @@
 {% load i18n %}
 
 {% block content %}
-<h1>Sessions tagged with '{{tag}}'</h1>
+<h1>{{slots.count}} session{{ slots.count|pluralize }} tagged with '{{tag}}'</h1>
 
 {% for slot in slots %}
-<section>
-<h2>{{slot.title}} - {{slot.get_presenters}}</h2>
-<p>{{slot.abstract}}</p>
-<div><a href="{% url 'slot' slot.conference.year slot.slug%}">{{slot}}</a></div>
-</section>
+{% include 'snippet_slot.html' %}
 {% endfor %}
 
 

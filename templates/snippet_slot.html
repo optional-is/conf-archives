@@ -1,0 +1,10 @@
+<section class="slot">
+<h2><a href="{% url 'slot' slot.conference.year slot.slug%}">{{slot.title}}</a></h2>
+<p class="presenters">{{slot.get_presenters}}</p>
+<p class="abstract">{{slot.abstract}}</p>
+<ul class="tags">
+	{% for tag in slot.tags.all %}
+	<li><a href="{% url 'tag' tag.name %}">{{tag.name}}</a></li>
+	{% endfor %}
+</ul>
+</section>
