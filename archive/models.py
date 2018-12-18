@@ -22,6 +22,7 @@ class Conference(models.Model):
 	metadata = models.TextField(blank=True, null=True)
 	attendees = models.IntegerField(blank=False,null=False)
 
+	is_active  = models.BooleanField(default=True)
 
 	link_url = models.CharField(max_length=200, blank=False)
 	logo_url = models.CharField(max_length=200, blank=False)
@@ -51,9 +52,11 @@ class Slot(models.Model):
 	synopsis = models.TextField(blank=True, null=True)
 	length = models.IntegerField(blank=False,null=False)
 
+	poster_img_url = models.TextField(blank=True, null=True)
 
 	tags = models.ManyToManyField(Tag, blank=True)
 
+	is_active  = models.BooleanField(default=True)
 
 	# media
 	youtube_link = models.TextField(blank=True, null=True)

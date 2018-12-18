@@ -29,14 +29,15 @@
     	<link rel="apple-touch-icon-precomposed" href="{% get_static_prefix %}ico/apple-touch-icon-57-precomposed.png">
     	<link rel="shortcut icon" href="{% get_static_prefix %}ico/favicon.png">
 		<style>
-			html,body { margin: 0; padding: 0; font-family: Helvetica, Arial; color: #333; line-height: 150%;  }
+			html,body { margin: 0; padding: 0; font-family: Helvetica, Arial; color: #333; line-height: 150%; text-align: center;  }
 			ul { list-style: none; padding: 0; margin: 0 }
 			li { padding: 0; margin: 0 }
 			
 			section { padding: 0; }
 
-			header { padding: 10px; }
+			header { padding: 10px; text-align: left }
 
+			main { max-width: 1250px; margin: 0 auto; outline: 1px solid red;  text-align: left; position: relative;}
 
 			nav ul li { display: inline; padding: 0 5px; }
 			nav ul { text-align: right; }
@@ -58,23 +59,47 @@
 			}
 			footer section ul li a, footer  p, section footer h2 { padding: 5px 20px; }
 			footer section p { padding: 1em 20px; }
-			.tags li { display: inline }
 			.breadcrumbs { font-size: 80%; font-weight: bold; color: #666; }
-			.conference { padding: 0 20px; }
-			.slot { padding: 20px; }
+
+			#content { padding: 0 20px; }
+			.conference { padding-right: 20px; }
+
+
+			section.slot { max-width: 350px; height: 197px; }
+
+
+			.slot, .media  { margin-bottom: 15px;}
 			.slot h2 { font-size: 18px; margin: 0; padding: 0; }
 			.slot p { margin: 0; padding: 0; }
-			.slot .presenters { font-weight: bold; color: #333; font-size
-			: 16px; }
+			.slot .presenters { font-weight: bold; color: #555; font-size
+			: 12px; text-transform: uppercase; }
 			.slot .abstract { padding: 10px 0; font-size: 14px; }
-			.slot { padding-bottom: 25px; }
+			.slot { position: relative;}
 			.slot h2 a, .slot h2 a:visited { color: #333; }
+			.tags li { line-height: 2em; }
 			.tags li a, .tags li a:visited, .tags li a:active, .tags li a:focus { color: #fff; text-decoration: none; background-color: #333; padding: 3px 7px; border-radius: 5px;} 
 
 			.tags li a:hover { background-color: #666; }
+			.tags li { display: inline }
+
+			.slot .tags { position: absolute; bottom: 0px; left: 0px; background: rgba(0,0,0,.25); width: 100%; }
+			.slot .tags ul { padding: 10px 20px }
+
+			/*
+			.year-2017 .tags li a, .year-2017 .tags li a:visited, .year-2017 .tags li a:active, .year-2017 .tags li a:focus {
+				background-color: #c1ffc8; color: #000; 
+			}
+			.year-2017 .tags li a:hover { background-color: #73d27e; color: #fff;}
+
+			.year-2018 .tags li a, .year-2018 .tags li a:visited, .year-2018 .tags li a:active, .year-2018 .tags li a:focus {
+				background-color: #bd3bdd; color: #fff; 
+			}
+			.year-2018 .tags li a:hover { background-color: #7c26c1; color: #fff;}
+			*/
+
 		</style>
   </head>
-   <body class="">
+   <body class="{% if slot%}year-{{slot.conference.year}}{%endif%}{% if conference%}year-{{conference.year}}{%endif%}">
 		<header>
 			<h1><a href="{% url 'index' %}">Material Conference Archives</a></h1>
 		<nav id="nav">

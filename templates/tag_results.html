@@ -5,9 +5,9 @@
 {% block content %}
 <h1>{{slots.count}} session{{ slots.count|pluralize }} tagged with '{{tag}}'</h1>
 
+<div class="tag_results">
 {% for slot in slots %}
 {% include 'snippet_slot.html' %}
 {% endfor %}
-
-
+</div>
 {% endblock %}
