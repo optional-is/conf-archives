@@ -22,7 +22,7 @@ def year(request, year_name):
 
 	c.update(add_footer_context())
 
-	c.update({'slots':Slot.objects.filter(conference=conf).order_by('running_order')})
+	c.update({'slots':Slot.objects.filter(is_active=True,conference=conf).order_by('running_order')})
 	return render(request, 'conference_detail.html', c)	
 
 def slot(request, year_name, slot_slug):
@@ -40,7 +40,7 @@ def tags(request, tag_name):
 
 	c.update(add_footer_context())
 	c.update({'tag': tag})
-	c.update({'slots':Slot.objects.filter(tags__in=[tag]).order_by('title')})
+	c.update({'slots':Slot.objects.filter(is_active=True,tags__in=[tag]).order_by('title')})
 	return render(request, 'tag_results.html', c)	
 
 
