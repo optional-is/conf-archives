@@ -31,7 +31,7 @@ class Conference(models.Model):
 	date_end = models.DateTimeField(auto_now_add=True,  blank=False)
 
 	def __unicode__(self):
-		return "Material Conference %s"%self.year
+		return "Material %s"%self.year
 
 class Presenter(models.Model):
 	name = models.CharField(max_length=200, blank=False,null=False)
@@ -66,4 +66,4 @@ class Slot(models.Model):
 		return ' & '.join([unicode(i) for i in self.presenter.all().order_by('name')])
 
 	def __unicode__(self):
-		return "Material Conference "+unicode(self.conference.year)+": "+self.title+" - "+self.get_presenters()
+		return "Material "+unicode(self.conference.year)+": "+self.title+" - "+self.get_presenters()

@@ -3,18 +3,19 @@
 {% load i18n %}
 
 {% block content %}
-<section style="width: 50%; float: left">
+<section style="position: absolute; top: 0; margin-right: 360px">
 <section class="conference">
 <h1>{{conference}}</h1>
 <div class="location">{{conference.location}}</div>
+
 {{conference.description|safe|escape}}
-<div><a href="{{conference.link_url}}">Homepage</a></div>
 <h2>Metadata</h2>
 {{conference.metadata|safe|escape}}
+<div><a href="{{conference.link_url}}">Event homepage</a></div>
 </section>
 </section>
 
-<section style="width: 50%; float: right">
+<section style="float: right; padding-top: 20px">
 {% for slot in slots %}
 {% include 'snippet_slot.html' %}
 {% endfor %}

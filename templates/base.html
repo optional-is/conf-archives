@@ -35,20 +35,24 @@
 			
 			section { padding: 0; }
 
-			header { padding: 10px; text-align: left }
+			header { padding: 10px; text-align: left; background: linear-gradient(to bottom,#666 0,#333 100%); color: #fff; }
+			header a { color: #fff; text-decoration: none; }
+			.mlogo { width: 60px; vertical-align: middle; padding-right: 15px;}
 
-			main { max-width: 1250px; margin: 0 auto; outline: 1px solid red;  text-align: left; position: relative;}
 
+			main { max-width: 1250px; margin: 0 auto; text-align: left; position: relative;}
+			nav { position: absolute; top: 10px; right: 20px; }
 			nav ul li { display: inline; padding: 0 5px; }
 			nav ul { text-align: right; }
 
 			footer section {
 				background-color: #333;
 				color: #dedede;
+				text-align: left;
 			}
 			footer .counts { font-size: 22px; margin: 0; line-height: 28px }
 			footer section #past-conferences { width: 25%; float: left; }
-			footer section ul li a { display: block; }
+			footer section ul li a { display: block;  }
 			footer section a, footer section a:active, footer section a:focus, footer section a:visited { color: #dedede; text-decoration: none; width: auto; }
 			footer section a:hover { background-color: #ccc; color: #333; }
 			footer section #tags { width: 75%; float: right; }
@@ -57,22 +61,23 @@
 			    column-count: 5;
 			    column-gap: 0px;
 			}
-			footer section ul li a, footer  p, section footer h2 { padding: 5px 20px; }
+			footer section ul li a, footer  p, section footer h2 { padding: 0 20px; line-height: 35px; }
 			footer section p { padding: 1em 20px; }
-			.breadcrumbs { font-size: 80%; font-weight: bold; color: #666; }
+			.breadcrumbs { font-size: 80%; font-weight: bold; color: #666; padding: 20px 0; }
 
 			#content { padding: 0 20px; }
 			.conference { padding-right: 20px; }
+			.conference h1 { font-size: 60px; padding: 20px 0 0 0; margin: 0; line-height: 80px; }
+			.location { font-weight: bold; color: #555; font-size: 12px; text-transform: uppercase; }
 
-
-			section.slot { max-width: 350px; height: 197px; }
+			section.slot { width: 350px; height: 197px; }
 
 
 			.slot, .media  { margin-bottom: 15px;}
-			.slot h2 { font-size: 18px; margin: 0; padding: 0; }
+			.slot h2 { font-size: 18px; margin: 0; padding: 5px 10px 0 10px; }
 			.slot p { margin: 0; padding: 0; }
-			.slot .presenters { font-weight: bold; color: #555; font-size
-			: 12px; text-transform: uppercase; }
+
+			.slot .presenters { font-weight: bold; color: #555; font-size: 12px; text-transform: uppercase; padding: 0 10px; }
 			.slot .abstract { padding: 10px 0; font-size: 14px; }
 			.slot { position: relative;}
 			.slot h2 a, .slot h2 a:visited { color: #333; }
@@ -101,7 +106,7 @@
   </head>
    <body class="{% if slot%}year-{{slot.conference.year}}{%endif%}{% if conference%}year-{{conference.year}}{%endif%}">
 		<header>
-			<h1><a href="{% url 'index' %}">Material Conference Archives</a></h1>
+			<h1><img src="https://material.is/2018/img/m-logo-white.svg" class="mlogo" alt="Material Logo" itemprop="image"><a href="{% url 'index' %}">Material Archives</a></h1>
 		<nav id="nav">
 			<ul>
 			{% for conf in conferences %}
@@ -115,7 +120,7 @@
 		</main>
 		<footer>
 			<section>
-				<p class="counts">Material is: {{conferences.count}} conferences, {{total_attendees}} attendees, {{total_slots}} sessions, and {{total_time}} minutes of amazing, insightful, thought provoking videos.</p>
+				<p class="counts">Material is: {{conferences.count}} events, {{total_attendees}} attendees, {{total_slots}} sessions, and {{total_time}} minutes of amazing, insightful, thought provoking videos.</p>
 				<ul id="past-conferences">
 				{% for conf in conferences %}
 				<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
@@ -128,7 +133,7 @@
 				</ul>
 				<p style="clear: both">Learn something new today.</p>
 			</section>
-			<p><a href="https://jkphl.is/">Joschi Kuphal</a> and <a href="https://suda.co.uk">Brian Suda</a> are the two people behind the Material Conference.</p>
+			<p><a href="https://jkphl.is/">Joschi Kuphal</a> and <a href="https://suda.co.uk">Brian Suda</a> are the two people behind Material.</p>
 		</footer>
   </body>
 	
