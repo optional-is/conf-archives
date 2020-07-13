@@ -38,8 +38,23 @@ class Presenter(models.Model):
 	name = models.CharField(max_length=200, blank=False,null=False)
 	bio = models.TextField(blank=True, null=True)
 
+	thumbnail_url = models.URLField(blank=True, null=True)
+	sex       = models.IntegerField(blank=True, null=True)
+	country   = models.CharField(max_length=24, blank=False,null=False) # Unicode flag
+
+
 	def __unicode__(self):
 		return unicode(self.name)
+
+class Link(models.Model):
+	url 	  = models.URLField(blank=True, null=True)
+	name 	  = models.CharField(max_length=200, blank=False,null=False)
+	presenter = models.ForeignKey(Presenter, blank=False, null=False, related_name="links")
+
+
+	def __unicode__(self):
+		return unicode(self.name) + " ("+self.presenter.name+")"
+
 
 class Slot(models.Model):
 	conference = models.ForeignKey(Conference, blank=False, null=False)
@@ -50,8 +65,10 @@ class Slot(models.Model):
 	title = models.TextField(blank=True, null=True)
 	abstract = models.TextField(blank=True, null=True)
 	description = models.TextField(blank=True, null=True)
+	transcript = models.TextField(blank=True, null=True)
 	synopsis = models.TextField(blank=True, null=True)
 	length = models.IntegerField(blank=False,null=False)
+
 
 	poster_img_url = models.TextField(blank=True, null=True)
 

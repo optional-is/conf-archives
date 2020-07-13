@@ -20,9 +20,18 @@
 	{% endfor %}
 </section>
 <section>
-	<h2>News</h2>
+	<h2>Links</h2>
+	<ul class="links">
+		{% for l in presenter.links.all %}
+		<li><a href="l.url">{{l.name}}</a></li>
+		{% endfor %}
+	</ul>
+</section>
+{% comment %}
+<section>
+	<h2>Elsewhere</h2>
 	<p>...</p>
 </section>
-
+{% endcomment %}
 
 {% endblock %}

@@ -39,7 +39,7 @@
 			.conference h1 { font-size: 60px; padding: 20px 0 0 0; margin: 0; line-height: 80px; }
 			.location { font-weight: bold; color: #555; font-size: 12px; text-transform: uppercase; }
 
-			section.slot { width: 350px; height: 197px; }
+			section.slot { min-width: 350px; height: 197px; }
 
 
 			.slot, .media  { margin-bottom: 15px;}

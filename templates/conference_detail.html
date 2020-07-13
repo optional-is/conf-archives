@@ -3,7 +3,6 @@
 {% load i18n %}
 
 {% block content %}
-<section style="position: absolute; top: 0; margin-right: 360px">
 <section class="conference">
 <h1>{{conference}}</h1>
 <div class="location">{{conference.location}}</div>
@@ -13,16 +12,13 @@
 {{conference.metadata|safe|escape}}
 <div><a href="{{conference.link_url}}">Event homepage</a></div>
 </section>
-</section>
 
-<section style="float: right; padding-top: 20px">
+<section>
 {% for slot in slots %}
 {% include 'snippet_slot.html' %}
 {% endfor %}
 </section>
-<section style="clear: both">
-	&nbsp;
-</section>
+
 
 
 {% endblock %}

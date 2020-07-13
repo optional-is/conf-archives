@@ -1,6 +1,10 @@
-<section class="slot year-{{slot.conference.year}}" style="background: rgba(0,0,0,0.1) url('{{slot.poster_img_url}}') no-repeat no-repeat;">
+<section class="slot year-{{slot.conference.year}}" style="background: rgba(0,0,0,0.1);">
 <h2><a href="{% url 'slot' slot.conference.year slot.slug%}">{{slot.title}}</a></h2>
-<p class="presenters">{{slot.get_presenters}}</p>
+<p class="presenters">
+{% for p in slot.presenter.all %}
+<a href="{% url 'presenter' p.slug %}">{{p.name}}</a>{% if not forloop.last %} & {% endif %}
+{% endfor %}
+</p>
 <!-- <p class="abstract">{{slot.abstract}}</p> -->
 {% if slot.tags.all|length > 0%}
 <div class="tags">

@@ -3,14 +3,17 @@
 {% load i18n %}
 
 {% block content %}
-<section class="breadcrumbs">
-	<a href="{% url 'index' %}">Home</a> ➜ <a href="{% url 'year' slot.conference.year %}">{{slot.conference.year}}</a> ➜ <span>{{slot.title}}</span>
-</section>
-<section class="slot">
+<section>
 <h2>{{slot.title}}</h2>
-<p class="presenters">{{slot.get_presenters}}</p>
+<p class="presenters">
+{% for p in slot.presenter.all %}
+<a href="{% url 'presenter' p.slug %}">{{p.name}}</a>{% if not forloop.last %} & {% endif %}
+{% endfor %}
+</p>
 <p class="conference-year"><a href="{% url 'year' slot.conference.year %}">{{slot.conference}}</a></p>
 </section>
+
+
 <section class="media">
 	{% if slot.youtube_link %}
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/{{slot.youtube_link}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -29,16 +32,26 @@
 	</ul>
 </section>
 
-{% for person in slot.presenter.all %}
-{% if person.bio %}
+{% comment %}
 <section>
-<h2>About {{person}}</h2>
-{{person.bio}}
+	<h2>Quotes</h2>
 </section>
-{% endif %}
-{% endfor %}
+{% endcomment %}
 
+<section>
+	<h2>Description</h2>
+	{{slot.description|linebreaksbr}}
+</section>
 
+<section>
+	<h2>Transcript</h2>
+	{{slot.transcript|linebreaksbr}}
+</section>
+
+<section>
+	<h2>Synopsis</h2>
+	{{slot.synopsis|linebreaksbr}}
+</section>
 
 
 {% endblock %}
