@@ -34,6 +34,7 @@ class Conference(models.Model):
 		return "Material %s"%self.year
 
 class Presenter(models.Model):
+	slug = models.CharField(max_length=200, blank=False,null=False)
 	name = models.CharField(max_length=200, blank=False,null=False)
 	bio = models.TextField(blank=True, null=True)
 

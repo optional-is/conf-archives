@@ -1,0 +1,10 @@
+		<header>
+			<h1><img src="https://material.is/2018/img/m-logo-white.svg" class="mlogo" alt="Material Logo" itemprop="image"><a href="{% url 'index' %}">Material Archives</a></h1>
+		<nav id="nav">
+			<ul>
+			{% for conf in conferences %}
+			<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
+			{% endfor %}
+		</ul>
+		</nav>
+		</header>

@@ -15,6 +15,22 @@ def index(request):
 
 	return render(request, 'index.html', c)	
 
+def presenter(request, speaker_slug):
+	c = {}
+	presenter = get_object_or_404(Presenter, slug=speaker_slug)
+	c.update({'presenter': presenter})
+	c.update({'slots': Slot.objects.filter(presenter=presenter)})
+
+
+	c.update(add_footer_context())
+
+	#c.update({'slots':Slot.objects.filter(is_active=True,conference=conf).order_by('running_order')})
+
+	print(c)
+	return render(request, 'presenter_detail.html', c)	
+
+
+
 def year(request, year_name):
 	c = {}
 	conf = get_object_or_404(Conference, year=int(year_name))

@@ -1,0 +1,17 @@
+		<footer>
+			<section>
+				<p class="counts">Material is: {{conferences.count}} events, {{total_attendees}} attendees, {{total_slots}} sessions, and {{total_time}} minutes of amazing, insightful, thought provoking videos.</p>
+				<ul id="past-conferences">
+				{% for conf in conferences %}
+				<li><a href="{% url 'year' conf.year %}">{{conf.year}}</a></li>
+				{% endfor %}
+				</ul>
+				<ul id="tags">
+				{% for tag in tags %}
+				<li><a href="{% url 'tag' tag.name %}">{{tag}}</a></li>
+				{% endfor %}
+				</ul>
+				<p style="clear: both">Learn something new today.</p>
+			</section>
+			<p><a href="https://jkphl.is/">Joschi Kuphal</a> and <a href="https://suda.co.uk">Brian Suda</a> are the two people behind Material.</p>
+		</footer>

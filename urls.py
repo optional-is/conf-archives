@@ -22,10 +22,13 @@ urlpatterns = [
 	url(r'^admin/', admin.site.urls),
 
 	url(r'^tags/(?P<tag_name>\w+)',archive.views.tags, name='tag'),
+    url(r'^presenter/(?P<speaker_slug>[^/]+)',archive.views.presenter, name='presenter'),
 
 	url(r'^$', archive.views.index, name='index'),
 	url(r'^(?P<year_name>\w+)/(?P<slot_slug>[^/]+)',archive.views.slot, name='slot'),
 	url(r'^(?P<year_name>\w+)',archive.views.year, name='year'),
+
+
 
 
 ]

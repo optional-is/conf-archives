@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section>
+	<h1>{{presenter.name}}</h1>
+	<p>{{presenter.bio|linebreaksbr }}</p>
+</section>
+<section>
+	<h2>Sessions</h2>
+	{% for s in slots %}
+	<h3><a href="{% url 'slot' s.conference.year s.slug %}">{{s}}</a></h3>
+	<p>{{s.abstract}}</p>
+	<ul class="tags">
+		{% for t in s.tags.all %}
+		<li><a href="{% url 'tag' t.name %}">{{t.name}}</a></li>
+		{% endfor %}
+	</ul>
+	{% endfor %}
+</section>
+<section>
+	<h2>News</h2>
+	<p>...</p>
+</section>
+
+
+{% endblock %}
